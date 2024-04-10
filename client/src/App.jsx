@@ -4,7 +4,7 @@ import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import Register from './components/Register'
 import Main from './components/Main'
 function App() {
-  
+
 
   return (
     <>
@@ -18,4 +18,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
