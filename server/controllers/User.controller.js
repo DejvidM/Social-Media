@@ -30,15 +30,12 @@ module.exports.Register = async (req ,res ) => {
 module.exports.Login = async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email });
-    console.log(req.body.password);
 
     if(user === null) {
         return res.status(400).json('Email does not exist');
     }
     
-    const correctPassword = await bcrypt.compare( user.password ,req.body.password);
-
-    console.log(correctPassword)
+    const correctPassword = await bcrypt.compare(req.body.password, user.password);
 
     if(!correctPassword) {
         return res.status(400).json('Incorrect Password');
@@ -52,7 +49,7 @@ module.exports.Login = async (req, res) => {
         .cookie("usertoken", userToken, {
             httpOnly: true
         })
-        .json({ msg: "Success! . You are logged in" });
+        .json({ msg: "Success! . You are logged in", user });
 }
 
 module.exports.Logout = (req ,res ) => {

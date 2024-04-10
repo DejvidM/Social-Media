@@ -18,16 +18,23 @@ module.exports.createPost = ( req , res ) => {
 module.exports.likePost = (req ,res ) => {
     Posts.findOne({ _id : req.body._id})
         .then( post => {
-            post.likes.push(req.body.creator)
-            res.json(post)
-            post.save({validateBeforeSave : false})
-        })
+            if(post.likes.includes(req.body.creator)){
+                    post.likes = post.likes.filter( like => like != req.body.creator);
+                    res.json(post);
+                    post.save({validateBeforeSave : false})
+            }
+            else{
+                post.likes.push(req.body.creator)
+                res.json(post)
+                post.save({validateBeforeSave : false})
+            }
+        }) 
         .catch(err => res.json(err))
 }
 
 module.exports.deletePost = (req , res ) => {
     Posts.deleteOne({_id : req.body})
-        .then(deleted => res.json(deleted))
+        .then(deleted => res.json(deleted)) 
         .catch(err => res.json(err))
 }
 
@@ -36,3 +43,9 @@ module.exports.getAllPosts = (req ,res ) => {
         .then(posts => res.json(posts))
         .catch(err => res.json(err))
     }
+
+module.exports.getOnePost = (req , res ) => {
+    Posts.findOne({_id : req.params._id})
+        .then(post => {res.json(post)})
+        .catch(err => res.json(err))
+}
