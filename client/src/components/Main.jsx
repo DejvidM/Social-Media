@@ -61,6 +61,7 @@ const Main= () => {
             <div style={{display : 'flex' , alignItems : 'center', placeContent : 'center' ,fontSize : '1.3em'}}>
                 <input type="text" placeholder="post something witty here" value={info} onChange={(e) => setInfo(e.target.value)}></input>
                 <button onClick={() => handlePost()}> Post</button>
+                
             </div>
             <div style={{display : 'flex' , flexDirection : 'column-reverse' , alignItems : 'center', fontSize : '1.2em'}}>
                 {posts.map( (post,index) =>{

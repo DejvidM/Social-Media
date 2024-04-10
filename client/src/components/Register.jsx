@@ -109,13 +109,13 @@ const Register = () => {
                 ? <p style={{color : 'red'}}>{errors.lastName.message} !</p>
                 : ''}
                 <div className="form-group">
-                    <input type="email" className="form-control" id="email" placeholder="Email" value={user.email} onChange={(e) => setUser({...user, email : e.target.value})}/>
+                    <input type="email" className="form-control" id="email" placeholder="Email" value={user.email.message} onChange={(e) => setUser({...user, email : e.target.value})}/>
                 </div>
                 {errors.email.message
                 ? <p style={{color : 'red'}}>{errors.email.message} !</p>
                 : ''}
         <div className="form-group">
-            <input type="password" className="form-control" id="password" placeholder="Password" value={user.password} onChange={(e) => setUser({...user, password : e.target.value})}/>
+            <input type="password" className="form-control" id="password" placeholder="Password" value={user.password.message} onChange={(e) => setUser({...user, password : e.target.value})}/>
         </div>
         {errors.password.message
                 ? <p style={{color : 'red'}}>{errors.password.message} !</p>
